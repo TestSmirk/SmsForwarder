@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.idormy.sms.forwarder.http.Http;
 import com.idormy.sms.forwarder.utils.LogUtil;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class SenderServerChanMsg {
 
         String sendUrl = "https://sctapi.ftqq.com/" + sendKey + ".send";
 
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        OkHttpClient client = Http.setOkHttpSsl(new OkHttpClient.Builder()).build().newBuilder().build();
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("title", title)
                 .addFormDataPart("desp", desp);

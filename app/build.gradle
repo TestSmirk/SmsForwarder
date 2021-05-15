@@ -12,7 +12,7 @@ android {
     }
     defaultConfig {
         applicationId "com.idormy.sms.forwarder"
-        minSdkVersion 23
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode appVersionCode
         versionName appVersionName
@@ -24,10 +24,10 @@ android {
     signingConfigs {
         //签名信息保存在 C:\Users\<Username>\.gradle\gradle.properties
         release {
-            storeFile file(RELEASE_STORE_FILE)
-            keyAlias RELEASE_KEY_ALIAS
-            storePassword RELEASE_KEY_PASSWORD
-            keyPassword RELEASE_STORE_PASSWORD
+            storeFile file("../jks/jks")
+            keyAlias "1"
+            storePassword "123456"
+            keyPassword "123456"
         }
     }
     buildTypes {
@@ -66,7 +66,9 @@ dependencies {
     //androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     //okhttp
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation ('com.squareup.okhttp3:okhttp:3.12.12'){
+        force = true //API 19 support
+    }
     implementation 'com.squareup.okio:okio:2.10.0'
 
     //fastjson
@@ -77,8 +79,6 @@ dependencies {
     //implementation 'com.linkedin.dexmaker:dexmaker-mockito:2.12.1'
 
     //友盟基础组件库（所有友盟业务SDK都依赖基础组件库）
-    implementation "com.umeng.umsdk:common:9.3.6"
-    implementation "com.umeng.umsdk:asms:1.2.0"
 
     //XUpdate
     implementation 'com.github.xuexiangjys:XUpdate:2.0.7'

@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.idormy.sms.forwarder.http.Http;
 import com.idormy.sms.forwarder.utils.LogUtil;
 
 import java.io.IOException;
@@ -86,7 +87,7 @@ public class SenderDingdingMsg {
         String textMsg = JSON.toJSONString(textMsgMap);
         Log.i(TAG, "textMsg:" + textMsg);
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = Http.setOkHttpSsl(new OkHttpClient.Builder()).build();
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"),
                 textMsg);
 

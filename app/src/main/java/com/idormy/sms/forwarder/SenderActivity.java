@@ -42,7 +42,6 @@ import com.idormy.sms.forwarder.sender.SenderSmsMsg;
 import com.idormy.sms.forwarder.sender.SenderTelegramMsg;
 import com.idormy.sms.forwarder.sender.SenderUtil;
 import com.idormy.sms.forwarder.sender.SenderWebNotifyMsg;
-import com.umeng.analytics.MobclickAgent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1191,13 +1190,11 @@ public class SenderActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
     }
 
 }

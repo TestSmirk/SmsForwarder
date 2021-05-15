@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.idormy.sms.forwarder.http.Http;
 import com.idormy.sms.forwarder.utils.LogUtil;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class SenderBarkMsg {
             }
         }
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = Http.setOkHttpSsl(new OkHttpClient.Builder()).build();
         final Request request = new Request.Builder().url(barkServer).get().build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {

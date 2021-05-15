@@ -15,8 +15,6 @@ import com.idormy.sms.forwarder.utils.Define;
 import com.idormy.sms.forwarder.utils.PhoneUtils;
 import com.idormy.sms.forwarder.utils.SettingUtil;
 import com.smailnet.emailkit.EmailKit;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.commonsdk.UMConfigure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,14 +74,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         Log.d(TAG, "onCreate");
         super.onCreate();
-        //初始化组件化基础库, 所有友盟业务SDK都必须调用此初始化接口。
-        //建议在宿主App的Application.onCreate函数中调用基础组件库初始化函数。
-        UMConfigure.init(this, "60254fc7425ec25f10f4293e", getChannelName(this), UMConfigure.DEVICE_TYPE_PHONE, "");
-        // 选用LEGACY_AUTO页面采集模式
-        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.LEGACY_MANUAL);
-        //pro close log
-        UMConfigure.setLogEnabled(true);
-        Log.i(TAG, "uminit");
         Intent intent = new Intent(this, FrontService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(intent);

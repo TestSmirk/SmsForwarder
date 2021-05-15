@@ -8,6 +8,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.idormy.sms.forwarder.MyApplication;
+import com.idormy.sms.forwarder.http.Http;
 import com.idormy.sms.forwarder.utils.LogUtil;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class SenderQyWxAppMsg {
             gettokenUrl += "&corpsecret=" + secret;
             Log.d(TAG, "gettokenUrl：" + gettokenUrl);
 
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = Http.setOkHttpSsl(new OkHttpClient.Builder()).build();
             final Request request = new Request.Builder().url(gettokenUrl).get().build();
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
@@ -114,7 +115,7 @@ public class SenderQyWxAppMsg {
         String textMsg = JSON.toJSONString(textMsgMap);
         Log.d(TAG, "textMsg：" + textMsg);
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = Http.setOkHttpSsl(new OkHttpClient.Builder()).build();
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), textMsg);
 
         final Request request = new Request.Builder()

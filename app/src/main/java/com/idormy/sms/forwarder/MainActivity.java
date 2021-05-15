@@ -29,7 +29,6 @@ import com.idormy.sms.forwarder.utils.NetUtil;
 import com.idormy.sms.forwarder.utils.PhoneUtils;
 import com.idormy.sms.forwarder.utils.SmsUtil;
 import com.idormy.sms.forwarder.utils.aUtil;
-import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -276,13 +275,11 @@ public class MainActivity extends AppCompatActivity implements ReFlashListView.I
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
     }
 
 }
